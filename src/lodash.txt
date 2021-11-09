@@ -1,0 +1,6 @@
+. Using the package ‘lodash’ solve below probolems
+
+Create an array of strings containing the names all the months of a year and split the array into 4 equally sized sub-arrays using the chunk function
+Using the tail function, return the last n-1 elements of an array containing the first 10 odd numbers
+Create 5 arrays of numbers containing a few duplicate values. Using the function union create a merged array with only unique values
+Use the function fromPairs to create a object contating key value pairs. For example [“horror”,”The Shining"],[“drama”,”Titanic"],[“thriller”,”Shutter Island"],[“fantasy”,”Pans Labyrinth"]
