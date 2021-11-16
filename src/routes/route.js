@@ -28,6 +28,21 @@ router.get('/randombooks',Controller.getrandombooks);
 
 
 
+// SECOND ASSIGNMENT API
+
+
+router.post('/authordetails',Controller.getauthordetails)
+
+
+router.get('/authorname',Controller.getauthornamedetails)
+
+
+router.get('/updatedetail',Controller.getupdatedetails)
+
+
+
+router.get('/responsedetail',Controller.getresponsedetails)
+
 
 
 

@@ -13,9 +13,9 @@ authorname:{type:String, require:true},
 category:{type:String, require:true},
 year:{type:Number},
 totalpages:{type:Number},
-stockavailable:{type:Boolean}    },{timestamps:true})
+stockavailable:{type:Boolean}  },{timestamps:true})
 
 
 
-module.exports=mongoose.model('User', bookSchema );
- 
+
+module.exports=mongoose.model('User', bookSchema)
