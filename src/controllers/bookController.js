@@ -1,7 +1,7 @@
 const bookModel = require("../models/bookModel.js");
 const authorModel = require("../models/authorModel.js")
 const publisherModel = require("../models/publisherModel.js")
-const mongoose = require("mongoose");
+
 
 //problem 2
 const createBook = async function (req, res) {
