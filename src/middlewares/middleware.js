@@ -1,18 +1,23 @@
+const jwt = require('jsonwebtoken')
+
+
 let middleware = function (req, res, next) {
-    let apptypeheader = req.headers['isfreeapp']
-    console.log(typeof apptypeheader)
-    let isAppFree
-    if (!apptypeheader) {
-        return res.json('MANDATORY HEADER MISSING')
-    } if (apptypeheader === 'false') {
-        isAppFree = false
+
+    let hello = req.headers['x-auth-token']
+    if (!hello) {
+        return res.send({ msg: "token was not found" })
     } else {
-        isAppFree = true
+        let decodetoken = jwt.verify(hello, 'my secret key')
+
+
+        if (decodetoken) {
+            next()
+        } else {
+            res.send({ msg: "token is not valid" })
+        }
     }
-    req.isFreeAppUser = isAppFree
-    next()
+
+
 }
-
-
 
 module.exports.middleware = middleware

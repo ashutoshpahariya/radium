@@ -6,7 +6,7 @@ const accountSchema = new mongoose.Schema({
     mobile: { type: Number, require: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
-    isdeletedflag: { type: Boolean, deafault: false }
+    isdeleted: { type: Boolean, default: false }
 }, { timestamps: true })
 
 module.exports = mongoose.model('myAccount', accountSchema)

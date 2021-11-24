@@ -1,25 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const productController= require("../controllers/productController");
-const userController=require("../controllers/usercontroller");
-const middlewaredata  = require('../middlewares/middleware');
-const orderController=require('../controllers/ordercontroller')
+const middle=require('../middlewares/middleware');
+
 
 // ACOUNT CONTROLLER
-accountcontroller=require('../controllers/accountController')
-
-
-
-// middle ware question 1
-router.post('/createproduct',productController.getcreateproduct)
-
-
-// middle ware question 2
-router.post('/createuser',middlewaredata.middleware,userController.getcreateUser)
-
-
-// middle ware question 3
-router.post('/createorder', middlewaredata.middleware,orderController.getcreateorder)
+const accountcontroller=require('../controllers/accountController')
 
 
 
@@ -27,11 +12,16 @@ router.post('/createorder', middlewaredata.middleware,orderController.getcreateo
 router.post('/create_acc',accountcontroller.getcreate_acc)
 
 
-router.post('/login',accountcontroller.getlogin)
+// assignment second api
+router.post('/login',accountcontroller.userlogin)
 
 
-router.get('/userdetail',accountcontroller.getuserdetail)
 
+// assignment third api
+ router.get('/userdetail/:userid',middle.middleware, accountcontroller.getuserdetail)
+
+ //assignment fourth api
+ router.put('/users/:userid',middle.middleware, accountcontroller.updatedetails)
 
 module.exports = router;
 
