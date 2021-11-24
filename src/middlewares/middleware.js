@@ -11,6 +11,8 @@ let middleware = function (req, res, next) {
 
 
         if (decodetoken) {
+        req.decodetoken=decodetoken
+
             next()
         } else {
             res.send({ msg: "token is not valid" })
