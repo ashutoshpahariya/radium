@@ -1,27 +1,36 @@
 const express = require('express');
 const router = express.Router();
-const middle=require('../middlewares/middleware');
-
 
 // ACOUNT CONTROLLER
 const accountcontroller=require('../controllers/accountController')
 
 
+ //FIRST COWIN API 
+ router.get('/cowindetail',accountcontroller.getcowindetail)
 
-// assignment account api
-router.post('/create_acc',accountcontroller.getcreate_acc)
+ //SECOND COWIN API 
+ router.get('/cowindistrict/:stateid',accountcontroller.getcowindistrict)
+
+//THIRD COWIN API 
+router.get('/cowinslot',accountcontroller.detailpindate)
+
+// FOURTH COWIN API
+router.post('/cowingenerateotp',accountcontroller.getcowingenerateotp)
+
+// FIFTH COWIN API
+router.post('/confirmotp',accountcontroller.getconfirmotp)
 
 
-// assignment second api
-router.post('/login',accountcontroller.userlogin)
+
+// WEATHER ASSIGNMENT FIRST API
+router.get('/londonweather',accountcontroller.getlondonweather)
 
 
+// WEATHER ASSIGNMENT SECOND API
+router.get('/changetemp',accountcontroller.getchangetemperature)
 
-// assignment third api
- router.get('/userdetail/:userid',middle.middleware, accountcontroller.getuserdetail)
+// WEAther assignment third api
+router.get('/tempdetail',accountcontroller.gettempdetail)
 
- //assignment fourth api
- router.put('/users/:userid',middle.middleware, accountcontroller.updatedetails)
 
-module.exports = router;
-
+module.exports = router
