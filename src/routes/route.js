@@ -1,22 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-// ACOUNT CONTROLLER
-const accountcontroller=require('../controllers/cryptoController')
+
+const accountcontroller=require('../controllers/authorController')
 
 
 
+// FIRST API
+ router.post('/createauthor',accountcontroller.getcreateauthor)
+
+ // SECOND API
+router.post('/createblog',accountcontroller.getcreateblog)
+
+// THIRD API
+router.get('/blogs',accountcontroller.getblogs)
 
 
-
-// CRYPTOCOIN  API
-
-router.get('/cryptoseparate',accountcontroller.getcryptodetail)
+//FOURTH API
+router.put('/blogs/:blogId',accountcontroller.updateblog)
 
 
-// CRYTOCOIN API DETAIL BY ID
-router.get('/highestchange',accountcontroller.getCoin)
+ module.exports = router
 
-
-
-module.exports = router

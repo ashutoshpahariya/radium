@@ -13,3 +13,5 @@
 //  upsert: true - it finds and updates the document but if the doc is not found(i.e it does not exist) then it creates a new document
 
 // how to delete a document: never ever use remove (in life) .. always maintain a flag(a key in schema) "isDeleted: false" and whenever a doc is being deleted change this to "isDeleted: true"
+
+
