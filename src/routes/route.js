@@ -1,34 +1,32 @@
 const express = require('express');
 const router = express.Router();
-
-
 const accountcontroller = require('../controllers/authorController')
 const middle = require('../middleware/middleware');
 
 
-// FIRST API
+//  PHASE 1   FIRST API
 router.post('/createauthor', accountcontroller.getcreateauthor)
 
-// SECOND API
+// PHASE 1   SECOND API
 router.post('/createblog', accountcontroller.getcreateblog)
 
-// THIRD API
-router.get('/blogs', accountcontroller.getBlog)
+// PHASE 1    THIRD API
+router.get('/blogs',accountcontroller.getBlog)
 
-//FOURTH API
-router.put('/blogs/:blogId', accountcontroller.updateBlog)
+//  PHASE 1 FOURTH API
+router.put('/blogs/:blogId', middle.middleware, accountcontroller.updateBlog)
 
-//FIFTH API
-router.delete('/blogs/:blogId', accountcontroller.deleteblog)
+//  PHASE 1 FIFTH API
+router.delete('/blogs/:blogId',middle.middleware, accountcontroller.deleteblog)
 
-//SIXTH API
+// PHASE 1 SIXTH API
 
-router.delete('/blogs', accountcontroller.deleteupdateblog)
+router.delete('/blogs',middle.middleware, accountcontroller.deleteupdateblog)
 
-//Phase 2
+//  PHASE  FIRST API
 router.post('/login', accountcontroller.userlogin)
 
-//second 2
+// PHASE 2 SECOND API
 
 router.get('/userdetail/:userid', middle.middleware, accountcontroller.getuserdetail)
 

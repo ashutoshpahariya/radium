@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 
-let middleware = function(req, res, next) {
+let middleware = function (req, res, next) {
 
     let hello = req.headers['x-api-key']
     if (!hello) {
@@ -11,6 +11,7 @@ let middleware = function(req, res, next) {
 
 
         if (decodetoken) {
+            req.validToken =decodetoken
             next()
         } else {
             res.send({ msg: "token is not valid" })
@@ -19,4 +20,6 @@ let middleware = function(req, res, next) {
 
 
 }
-module.exports.middleware = middleware;
+
+module.exports.middleware = middleware
+
