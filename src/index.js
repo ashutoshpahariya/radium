@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 
 mongoose
     .connect(
-        "mongodb+srv://user-open-to-all:hiPassword123@cluster0.xgk0k.mongodb.net/ashutosh_pahariya_db?retryWrites=true&w=majority", { useNewUrlParser: true }
+        "mongodb+srv://user-open-to-all:hiPassword123@cluster0.xgk0k.mongodb.net/PROJECT_TWO_GROUP_6_db?retryWrites=true&w=majority", { useNewUrlParser: true }
     )
     .then(() => {
         console.log("mongodb running and connected");
