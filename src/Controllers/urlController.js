@@ -86,51 +86,59 @@ const createurl = async function (req, res) {
 
 
 //-----------SECOND API PULL LONG URL BY REDIRECTING
-const geturl = async function (req, res) {
+// const geturl = async function (req, res) {
+//   try {
+//       const urlCode = req.params.urlCode.trim().toLowerCase()
+//       console.log(urlCode,"hello 92")
+//       if (!isValid(urlCode)) {
+//           res.status(400).send({ status: false, message: 'Please provide valid urlCode' })
+//       }
+//       console.log(urlCode,"hello 96")
+//       let checkforUrl = await GET_ASYNC(`${urlCode}`)    //first check in cache
+//       console.log(checkforUrl,"hello 98")
+//       if (checkforUrl) {
+//           return res.redirect(302, checkforUrl)
+//       }
+
+//       const url = await urlModel.findOne({ urlCode: urlCode }) //second check in Db
+//       if (!url) {
+//           return res.status(404).send({ status: false, message: 'No URL Found' })
+//       }
+//       await SET_ASYNC(`${urlCode}`, JSON.stringify(url.longUrl)) //if data found in db than created in cache
+//       return res.redirect(302, url.longUrl)
+
+//   } catch (err) {
+//       console.error(err)
+//       res.status(500).send('Server Error')
+//   }
+// }
+
+ const geturl = async function (req, res) {
   try {
     const urlCode = req.params.urlCode.trim().toLowerCase()
     if (!isValid(urlCode)) {
       res.status(400).send({ status: false, message: 'Please provide valid urlCode' })
+      console.log()
     }
     //---FETCH THE DATA BY URLCODE IN REDIS
     let checkforUrl = await GET_ASYNC(`${urlCode}`)
+    console.log(checkforUrl, "hiii")
     if (checkforUrl) {
-      return res.redirect(302, JSON.parse(checkforUrl).longUrl)
+      return res.redirect(302, checkforUrl)
+      
     }
     //---FETCH THE DATA IN MONGO DB IF IT IS NOT PRESENT IN CACHE
     const url = await urlModel.findOne({ urlCode: urlCode })
-    //---SET GENERATE DATA IN CACHE
-    await SET_ASYNC(`${urlCode}`, JSON.stringify(url))
-    if (url) {
-      return res.redirect(302, url.longUrl)
+    if (!url) {
+      return res.status(404).send({ status: false, message: 'No URL Found' })
     }
-    //return res.status(404).send({ status: false, message: 'No URL Found' })
+      //---SET GENERATE DATA IN CACHE
+      await SET_ASYNC(`${urlCode}`, JSON.stringify(url.longUrl))
+    return res.redirect(302, url.longUrl)
   } catch (err) {
     console.error(err)
     res.status(500).send('Server Error')
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  } }
 
 module.exports.createurl = createurl
 module.exports.geturl = geturl
