@@ -82,7 +82,7 @@ const userLogin = async (req, res) => {
         if (user) {
             const { _id, name, phone } = user
             let payload = { userId: _id, email: email, phone: phone };
-            const generatedToken = jwt.sign(payload, "functionupridersprivatekey", { expiresIn: '180m' });
+            const generatedToken = jwt.sign(payload, "functionupridersprivatekey", { expiresIn: '30m' });
             res.header('user-login-key', generatedToken);
             return res.status(200).send({
                 Message: name + " you have logged in Succesfully",
