@@ -7,7 +7,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const createBook = async (req, res) => {
     try {
         const myBody = req.body
-        const { title, excerpt, userId, ISBN, category, subcategory, reviews,bookcover } = myBody;
+        const { title, excerpt, userId, ISBN, category, subcategory, reviews } = myBody;
         if (!validateBody.isValidRequestBody(myBody)) {
             return res.status(400).send({ status: false, message: "Please provide body for successful creation" });
         }
@@ -36,9 +36,7 @@ const createBook = async (req, res) => {
         if (!validateBody.isValid(subcategory)) {
             return res.status(400).send({ status: false, message: "Please provide subcategory or subcategory field" });;
         }
-        if (!validateBody.isValid(bookcover)) {
-            return res.status(400).send({ status: false, message: "Please provide bookcover or bookcover field" });;
-        }
+       
         const duplicateTitle = await bookModel.find({ title: title });
         const titleFound = duplicateTitle.length;
         if (titleFound != 0) {
@@ -54,7 +52,7 @@ const createBook = async (req, res) => {
         }
         else {
             let releasedAt = new Date()
-            let bookCreated = { title, excerpt, userId, ISBN, category, subcategory, releasedAt, reviews ,bookcover}
+            let bookCreated = { title, excerpt, userId, ISBN, category, subcategory, releasedAt, reviews}
             let savedData = await bookModel.create(bookCreated)
             return res.status(201).send({ status: true, message: 'Success', data: savedData });
         }
