@@ -23,7 +23,7 @@ const userRegistration = async (req, res) => {
         if (!validateBody.isValid(phone)) {
             return res.status(400).send({ status: false, message: "Please provide phone number or phone field" });
         }
-        if (!validateBody.isValidMobileNum(phone)) {
+        if(!(/^[6-9]\d{9}$/.test(phone.trim()))){
             return res.status(400).send({ status: false, message: 'Please provide a valid phone number.' })
         }
         if (!validateBody.isValid(email)) {

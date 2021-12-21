@@ -14,12 +14,6 @@ const isString = function (value) {
     if (typeof value === 'string' && value.trim().length === 0) return false//it checks the value conAtain only space or not 
     return true;
 }
-// const isValidMobileNum = function (value) {
-//     if (!(/^(\+\d{1,3}[- ]?)?\d{10}$/.test(value.trim()))) {
-//         return false
-//     }
-//     return true
-// }
 
 const isValidMobileNum = function (value) {
     if (!(/^[6-9]\d{9}$/.test(value))) {
@@ -27,7 +21,6 @@ const isValidMobileNum = function (value) {
     }
     return true
 }
-
 
 const isValidSyntaxOfEmail = function (value) {
     if (!(validator.validate(value.trim()))) {
